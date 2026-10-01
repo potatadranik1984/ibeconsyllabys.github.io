@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Economics Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f6f8;--card:#fff;--ink:#12202b;--mut:#5a6b78;--ac:#0b7a75;--hl:#b4461f;--bd:#d3dde3;--c1:#0b7a75;--c2:#b4461f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1a21;--card:#17252e;--ink:#e6eef2;--mut:#93a6b2;--ac:#4fc9c0;--hl:#f09a70;--bd:#2a3c47;--c1:#4fc9c0;--c2:#f09a70}}
+:root[data-theme=dark]{--bg:#0f1a21;--card:#17252e;--ink:#e6eef2;--mut:#93a6b2;--ac:#4fc9c0;--hl:#f09a70;--bd:#2a3c47;--c1:#4fc9c0;--c2:#f09a70}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Source Sans 3",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.15;margin:0}
+main{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:2rem;margin-bottom:4px}
+.sub{color:var(--mut);margin:0 0 16px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+input[type=search]{flex:1;min-width:200px;font:inherit;padding:12px 14px;border:2px solid var(--bd);border-radius:10px;background:var(--card);color:var(--ink)}
+input:focus,button:focus-visible{outline:3px solid var(--ac);outline-offset:1px}
+.seg{display:flex;border:2px solid var(--bd);border-radius:10px;overflow:hidden}
+.seg button{border:0;border-radius:0;background:var(--card);padding:10px 18px}
+.seg button.on{background:var(--ac);color:#fff}
+button{font:inherit;color:var(--ink);cursor:pointer}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.chip{border:1px solid var(--bd);background:var(--card);border-radius:20px;padding:5px 14px}
+.chip.on{background:var(--ink);color:var(--bg)}
+.unit{margin:22px 0 10px;display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:4px}
+.unit small{color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.tb{text-align:left;background:var(--card);border:1px solid var(--bd);border-left:5px solid var(--ac);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:baseline}
+.tb:hover{border-color:var(--ac)}
+.tb b{font-family:"Bricolage Grotesque",sans-serif;color:var(--ac);min-width:2.2em}
+.tb.h{border-left-color:var(--hl)}
+.tag{font-size:.72rem;border:1px solid var(--hl);color:var(--hl);border-radius:4px;padding:0 5px;margin-left:6px;white-space:nowrap}
+.back{border:0;background:none;color:var(--ac);padding:0;margin-bottom:14px;font-weight:600}
+.page h2{font-size:1.9rem;margin:4px 0 6px}
+.page .crumb{color:var(--mut)}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:16px 18px;margin:16px 0}
+.box h3{font-size:1.1rem;margin-bottom:8px}
+dl{margin:0}dt{font-weight:600;color:var(--ac);margin-top:8px}dd{margin:0}
+.ex{border-left:5px solid var(--hl)}
+svg{width:100%;max-width:440px;display:block;margin:auto}
+svg .ax{stroke:var(--ink);stroke-width:1.5;fill:none}
+svg .c1,svg .c1b{stroke:var(--c1);stroke-width:2.5;fill:none}
+svg .c1b{stroke-dasharray:6 4}.hw{font-size:.95rem;margin:8px 0 0}svg .c2{stroke:var(--c2);stroke-width:2.5;fill:none}
+svg .dsh{stroke:var(--mut);stroke-dasharray:4 3;stroke-width:1}
+svg .dt{fill:var(--ink)}
+svg text{fill:var(--ink);font:11px "Source Sans 3",sans-serif}
+.cap{text-align:center;color:var(--mut);font-size:.9rem;margin:6px 0 0}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.nav button{border:1px solid var(--bd);background:var(--card);border-radius:8px;padding:10px 14px}
+.none{color:var(--mut);padding:20px 0}
+</style></head><body><main id="app"></main>
+<script>
+// id|unit|title|hl(0 both,1 HL only,2 includes HL)|graph|terms (term=def;;...)|example
+const U=["Introduction to economics","Microeconomics","Macroeconomics","The global economy"];
+const H={"2.1":"HL: use demand functions such as Qd = a − bP and work out the effect of changes.","2.2":"HL: use supply functions such as Qs = c + dP.","2.5":"HL: calculate price elasticity of demand with the formula, plus cross (XED) and income (YED) elasticity effects on revenue.","2.6":"HL: calculate and apply price elasticity of supply.","2.7":"HL: calculate the effects of price controls and taxes/subsidies on consumers, producers and government.","2.8":"HL: calculate externality costs and benefits and the size of the welfare loss.","3.3":"HL: calculate the unemployment rate and inflation using price indices.","3.4":"HL: calculate and interpret the Gini coefficient and Lorenz curves.","3.5":"HL: more detail on the money market and how interest rates are set.","3.6":"HL: the multiplier effect and the Laffer curve.","4.1":"HL: calculate opportunity costs and use comparative-advantage tables.","4.2":"HL: calculate the effect of tariffs and quotas on price, quantity and revenue.","4.5":"HL: how central banks manage exchange rates, plus the Marshall-Lerner condition.","4.6":"HL: the current account, the Marshall-Lerner condition and the J-curve.","4.7":"HL: the Gini link to development, plus the Environmental Kuznets Curve."};
+const T=`1.1|0|What is economics?|0|ppc|scarcity=Unlimited wants but limited resources;;opportunity cost=The value of the next best alternative you give up;;factors of production=Land, labour, capital and entrepreneurship;;positive vs normative=Testable statements of fact vs value judgements|Choosing to study tonight means giving up a night out. The night out is the opportunity cost.
+1.2|0|How do economists approach the world?|0|none|ceteris paribus="All else equal": change one variable, hold the others fixed;;economic model=A simplified picture of reality used to predict outcomes;;rational behaviour=Choosing the option with the greatest benefit;;microeconomics vs macroeconomics=Individual markets vs the whole economy|A demand model for pizza assumes income and tastes stay constant while only the price changes.
+2.1|2|Demand|2|shift|demand=Quantity consumers are willing and able to buy at each price;;law of demand=Higher price means lower quantity demanded;;non-price determinants=Income, tastes, prices of substitutes and complements, population, expectations|A price rise moves you along the curve. A viral trend shifts the whole curve right.
+2.2|2|Supply|2|sd|supply=Quantity producers are willing and able to sell at each price;;law of supply=Higher price means higher quantity supplied;;determinants=Costs of production, technology, taxes and subsidies, number of firms|A new cheaper battery technology lowers costs and shifts the supply of electric cars right.
+2.3|2|Competitive market equilibrium|0|sd|equilibrium=Price where quantity demanded equals quantity supplied;;excess demand (shortage)=Demand exceeds supply below the equilibrium price;;excess supply (surplus)=Supply exceeds demand above the equilibrium price;;consumer and producer surplus=Benefit above what buyers/sellers must receive|Concert tickets priced below equilibrium sell out instantly: a shortage that pushes prices up.
+2.4|0|Critique of the maximizing behaviour of consumers and producers|0|none|bounded rationality=People have limited information and thinking capacity;;behavioural economics=Studies how psychology shapes decisions;;nudging=Changing how choices are framed to guide decisions;;satisficing=Choosing "good enough" instead of the best|Making organ donation opt-out instead of opt-in raises donor numbers without banning any choice.
+2.5|2|Elasticity of demand|2|el|PED=% change in quantity demanded ÷ % change in price;;inelastic (PED < 1)=Quantity responds little to price, e.g. necessities;;elastic (PED > 1)=Quantity responds a lot, e.g. goods with many substitutes;;total revenue=Price × quantity; raising price increases revenue only if demand is inelastic|Petrol is inelastic, so a price rise barely cuts purchases. Restaurant meals are more elastic.
+2.6|2|Elasticity of supply|2|el|PES=% change in quantity supplied ÷ % change in price;;spare capacity=Unused resources make supply more elastic;;time period=Supply is more elastic in the long run;;perishability=Hard-to-store goods have inelastic supply|Strawberry supply is inelastic within a season but rises the following year when farmers plant more.
+2.7|2|Role of government in microeconomics|2|sd|price ceiling=Legal maximum price, e.g. rent control;;price floor=Legal minimum price, e.g. minimum wage;;indirect tax=Tax on goods that shifts supply left;;subsidy=Payment to producers that shifts supply right|Rent control below equilibrium creates a housing shortage.
+2.8|2|Market failure: externalities and common pool resources|2|ext|externality=A cost or benefit to a third party not involved in the transaction;;MPC vs MSC=Private cost vs social cost (private + external);;common pool resource=Rivalrous but non-excludable, e.g. fish stocks;;tragedy of the commons=Overuse because no one owns the resource|A factory's pollution is a negative externality, so it produces more than the socially optimal output.
+2.9|0|Market failure: public goods|0|none|non-excludable=Cannot stop people from using the good;;non-rivalrous=One person's use doesn't reduce another's;;free rider problem=Benefiting without paying, so markets under-provide;;public good=Non-excludable and non-rivalrous|Street lighting benefits everyone whether they pay or not, so government provides it from taxes.
+2.10|1|Market failure: asymmetric information|1|none|asymmetric information=One party knows more than the other;;adverse selection=Hidden information leads to bad choices, e.g. risky people buy insurance;;moral hazard=Risky behaviour once protected from consequences;;signalling=Sending credible information, e.g. a degree|In the used-car market, sellers know more than buyers, so buyers pay less and good cars may leave the market.
+2.11|1|Market failure: market power|1|none|market power=Ability of a firm to set price above cost;;monopoly=A single dominant seller with barriers to entry;;barriers to entry=Patents, economies of scale, control of resources;;allocative inefficiency=Price is above marginal cost|A patented medicine can be priced far above its production cost until the patent expires.
+2.12|1|The market's inability to achieve equity|1|lorenz|equity=Fairness in the distribution of income and wealth;;progressive tax=Higher rates for higher incomes;;transfer payments=Benefits paid without any good or service in return;;income inequality=Gap between rich and poor|Markets reward skills and assets unequally, so governments use progressive taxes and benefits to redistribute.
+3.1|0|Measuring economic activity and illustrating its variations|0|none|GDP=Total value of final goods and services produced in a country in a year;;real vs nominal GDP=Real is adjusted for inflation;;GNI=GDP plus income earned abroad by residents;;business cycle=Fluctuations between booms and recessions|If nominal GDP rises 5% while prices rise 5%, real GDP is unchanged.
+3.2|0|Variations in economic activity: AD and AS|0|adas|aggregate demand=Total planned spending: C + I + G + (X − M);;short-run AS=Output firms will supply at each price level when costs are fixed;;long-run AS=Full-employment output, vertical;;recessionary gap=Output below full employment|A fall in consumer confidence shifts AD left, cutting output and raising unemployment.
+3.3|2|Macroeconomic objectives|2|adas|inflation=Sustained rise in the general price level;;unemployment=Willing and able to work but without a job;;economic growth=Increase in real GDP over time;;balance of payments=Record of a country's international transactions|Central banks often target about 2% inflation as the stable objective.
+3.4|2|Economics of inequality and poverty|2|lorenz|Lorenz curve=Graph of cumulative income share vs cumulative population;;absolute vs relative poverty=Below a fixed income line vs below a share of median income;;redistribution=Taxes and benefits to reduce inequality;;Gini coefficient=0 = perfect equality, 1 = perfect inequality|The further the Lorenz curve bows from the diagonal line, the more unequal the country.
+3.5|2|Demand management: monetary policy|2|adas|monetary policy=Central bank controls interest rates and the money supply;;expansionary=Lower interest rates raise spending;;contractionary=Higher interest rates reduce inflation;;quantitative easing=Central bank buys bonds to boost money supply|Cutting interest rates makes borrowing cheaper, increasing investment and shifting AD right.
+3.6|2|Demand management: fiscal policy|2|adas|fiscal policy=Government spending and taxation decisions;;budget deficit=Spending exceeds tax revenue;;automatic stabilizers=Taxes and benefits that change with the cycle;;crowding out=Government borrowing raises interest rates and reduces private investment|In a recession, cutting taxes and raising infrastructure spending shifts AD right.
+3.7|0|Supply-side policies|0|adas|supply-side policy=Measures that raise productive capacity (LRAS);;interventionist=Education, training, infrastructure spending;;market-based=Deregulation, lower taxes, privatization;;labour market reform=Weaker unions, flexible contracts|Funding vocational training improves worker skills and shifts LRAS right.
+4.1|2|Benefits of international trade|2|ppc|absolute advantage=Produce more with the same resources;;comparative advantage=Lower opportunity cost of producing a good;;specialization=Focusing on what you're relatively best at;;gains from trade=Higher consumption than without trade|A country with cheap sunshine exports fruit and imports machinery, so both sides gain.
+4.2|2|Types of trade protection|2|tariff|tariff=Tax on imported goods;;quota=Limit on imported quantity;;subsidy to domestic producers=Payment to help local firms compete;;embargo=Complete ban on trade|A 20% tariff on imported steel raises its price and protects local steel producers.
+4.3|0|Arguments for and against trade control/protection|0|none|infant industry=Temporary protection for new industries;;dumping=Selling below cost abroad;;national security=Protect strategic industries;;retaliation=Trade wars where countries respond with their own barriers|A young tech industry may be shielded from foreign giants until it can compete.
+4.4|0|Economic integration|0|none|free trade area=No internal tariffs, e.g. USMCA;;customs union=Free trade inside plus a common external tariff;;common market=Also free movement of labour and capital;;trade creation=Shift to lower-cost producers within the bloc|The EU is a single market with a common external tariff, and the euro zone shares a currency.
+4.5|2|Exchange rates|2|fx|exchange rate=Price of one currency in terms of another;;floating vs fixed=Set by market forces vs pegged by the central bank;;appreciation/depreciation=Currency rises/falls in value under floating rates;;competitiveness=A weaker currency makes exports cheaper|If the euro depreciates, European exports become cheaper for US buyers.
+4.6|2|Balance of payments|2|none|current account=Trade in goods and services plus income flows;;capital account=Transfers of capital assets;;financial account=Investment flows like FDI and portfolio investment;;current account deficit=Imports and outflows exceed exports and inflows|A country that imports more than it exports runs a current account deficit, financed by foreign borrowing.
+4.7|2|Sustainable development|2|none|economic development=Improvement in living standards, health and education;;HDI=Composite of income, education and life expectancy;;sustainable development=Meets present needs without harming future generations;;ecological footprint=Land area needed to support consumption|Solar power investment raises energy access while limiting emissions.`.split("\n").map(l=>{const p=l.split("|");return{id:p[0],u:+p[0][0]-1,t:p[2],hl:+p[3],g:p[4],terms:p[5].split(";;").map(x=>{const i=x.indexOf("=");return[x.slice(0,i),x.slice(i+1)]}),ex:p[6]}});
+T.forEach(t=>t.unit=+t.id[0]);
+const E={
+"opportunity cost":["The value of the next best alternative forgone when a choice is made. It applies to consumers, firms and governments because resources are scarce. On a PPC it is shown by the slope: producing more of one good means giving up some of the other, and a bowed-out curve shows increasing opportunity cost.","ppc"],
+"demand":["The quantity of a good or service that consumers are willing and able to buy at each price in a given time period, ceteris paribus. The curve slopes downward. A change in price causes a movement along the curve; a change in a non-price determinant (income, tastes, prices of related goods, population, expectations) shifts the whole curve.","shift"],
+"law of demand":["As the price of a good rises, the quantity demanded falls, ceteris paribus (and vice versa). It is explained by the income effect (purchasing power falls), the substitution effect (cheaper alternatives are chosen) and diminishing marginal utility.","dem"],
+"supply":["The quantity producers are willing and able to sell at each price in a given time period. The curve slopes upward because higher prices raise profit and firms face rising marginal costs. A price change moves along the curve; changes in costs, technology, taxes, subsidies or the number of firms shift it.","sup"],
+"equilibrium":["The price and quantity at which quantity demanded equals quantity supplied, so there is no tendency to change. The market clears: shortages push price up and surpluses push it down. A shift in demand or supply creates a new equilibrium.","sd"],
+"excess demand (shortage)":["Occurs when quantity demanded exceeds quantity supplied at a price below equilibrium. Competition between buyers bids the price up, which contracts demand and extends supply until equilibrium is restored, unless a price ceiling prevents this.","short"],
+"excess supply (surplus)":["Occurs when quantity supplied exceeds quantity demanded at a price above equilibrium. Unsold stock pushes producers to cut prices, which extends demand and contracts supply until the market clears.","excess"],
+"consumer and producer surplus":["Consumer surplus is the difference between the maximum price consumers are willing to pay and the price they actually pay (area under D, above price). Producer surplus is the difference between the price received and the minimum price producers would accept (above S, below price). Total surplus measures welfare and is maximized at competitive equilibrium.","surp"],
+"PED":["Price elasticity of demand measures the responsiveness of quantity demanded to a change in price: PED = %ΔQd ÷ %ΔP (negative, usually quoted as an absolute value). Determinants: availability of substitutes, necessity vs luxury, proportion of income spent, time period. Steeper curves are more inelastic.","el"],
+"PES":["Price elasticity of supply = %ΔQs ÷ %ΔP (positive). Supply is more elastic when firms have spare capacity, stocks, mobile factors of production and time to respond; it is inelastic for goods that are slow to expand, such as agriculture or housing.","el"],
+"price ceiling":["A legally imposed maximum price set below equilibrium to make goods affordable (e.g. rent control). Quantity demanded exceeds quantity supplied, causing shortages, queues, black markets and lower quality. Consumers who obtain the good gain; producers and excluded buyers lose.","ceil"],
+"price floor":["A legal minimum price set above equilibrium to protect producers or workers (e.g. minimum wage, agricultural support prices). It creates excess supply (surplus or unemployment), may require government to buy the surplus, and can misallocate resources.","floor"],
+"indirect tax":["A tax on expenditure (e.g. VAT, excise) collected by firms and passed to government. It raises costs and shifts supply left/up by the amount of the tax. The burden (incidence) is shared between consumers and producers: the more inelastic side bears more. Used to correct negative externalities and raise revenue.","tax"],
+"subsidy":["A payment from government to producers that lowers costs and shifts supply right/down, so price falls and quantity rises. Used to encourage goods with positive externalities (e.g. education), but it has an opportunity cost and can distort markets.","sub"],
+"externality":["A cost or benefit to a third party who is not part of the transaction. Negative externalities (e.g. pollution) mean marginal social cost exceeds marginal private cost, so the market overproduces; positive externalities (e.g. vaccination) cause underproduction. Responses: taxes, subsidies, regulation, tradable permits.","ext"],
+"MPC vs MSC":["MPC is the cost to the producer of one extra unit; MSC = MPC + marginal external cost. The socially optimal output is where MSB = MSC, but the free market produces where MPB = MPC, at a higher quantity, causing a welfare loss.","ext"],
+"aggregate demand":["Total planned spending on domestic goods and services at each price level: AD = C + I + G + (X − M). It slopes downward because of the wealth, interest-rate and exchange-rate effects. Changes in confidence, interest rates, taxes or government spending shift AD.","adshift"],
+"long-run AS":["Potential output when all resources are fully employed. In the monetarist/new classical view it is vertical because output depends on the quantity and quality of factors of production, not the price level. It shifts right with investment, education, technology or institutional improvements.","lras"],
+"recessionary gap":["Actual output is below the full-employment level, leaving spare capacity and cyclical unemployment. Governments can use expansionary policy to shift AD right, or wait for wages and prices to fall (self-correction).","gap"],
+"expansionary":["Policy to raise AD. Lower interest rates make borrowing cheaper, raising consumption and investment, and may depreciate the currency, boosting net exports. AD shifts right, raising real GDP and cutting unemployment, but risking inflation.","adshift"],
+"economic growth":["An increase in real GDP over time. Short-run growth is a rise in actual output (AD shifts right); long-run growth is an increase in productive capacity, shown by an outward PPC or a rightward LRAS.","ppcshift"],
+"comparative advantage":["A country has a comparative advantage when it produces a good at a lower opportunity cost than others. Specializing in those goods and trading allows consumption beyond each country's own PPC. It depends on factor endowments and technology, not on absolute output.","ppc"],
+"tariff":["A tax on imported goods. It raises the domestic price, increases domestic output, reduces quantity demanded and imports, and earns government revenue. Domestic producers gain; consumers lose surplus and there is a deadweight welfare loss. It may provoke retaliation.","tariff"],
+"exchange rate":["The price of one currency in terms of another, set by the demand for and supply of the currency in a floating system. Demand for a currency comes from exports, foreign investment and speculation.","fx"],
+"appreciation/depreciation":["Appreciation is a rise in a currency's value under floating rates; depreciation is a fall. If demand for euros falls (e.g. fewer tourists), the euro depreciates, making exports cheaper and imports dearer.","fxdep"],
+"Lorenz curve":["Plots the cumulative share of income against the cumulative share of population. The 45° line shows perfect equality; the further the curve bows away from it, the greater the inequality. Gini = area between the lines ÷ area under the line of equality.","lorenz"]};
+const X=v=>30+v*2,Y=v=>170-v*1.6;
+const ln=(a,b,c,d,k,t)=>`<line x1="${X(a)}" y1="${Y(b)}" x2="${X(c)}" y2="${Y(d)}" class="${k}"/>`+(t?`<text x="${X(c)-3}" y="${Y(d)-5}" text-anchor="end">${t}</text>`:"");
+const gd=(a,b,p,q)=>`<line x1="30" y1="${Y(b)}" x2="${X(a)}" y2="${Y(b)}" class="dsh"/><line x1="${X(a)}" y1="${Y(b)}" x2="${X(a)}" y2="170" class="dsh"/><circle cx="${X(a)}" cy="${Y(b)}" r="3.5" class="dt"/><text x="6" y="${Y(b)+4}">${p||""}</text><text x="${X(a)-6}" y="184">${q||""}</text>`;
+const B=ln(10,85,90,15,"c1","D")+ln(10,15,90,85,"c2","S");
+const GR={
+sd:[ln(10,85,90,15,"c1","D")+ln(10,15,90,85,"c2","S")+gd(50,50,"P*","Q*"),"Equilibrium sits where supply (S) meets demand (D).","Price","Quantity"],
+shift:[ln(10,85,90,15,"c1","D")+ln(25,85,105,15,"c1","D1")+ln(10,15,90,85,"c2","S")+gd(50,50,"P","Q")+gd(57.5,56.5,"P1","Q1"),"Higher demand (D to D1) raises both price and quantity.","Price","Quantity"],
+el:[ln(40,95,60,5,"c1","Inelastic")+ln(5,55,95,45,"c2","Elastic"),"Steep demand = inelastic (PED < 1); flat demand = elastic (PED > 1).","Price","Quantity"],
+ppc:[`<path d="M${X(0)} ${Y(85)} Q${X(85)} ${Y(85)} ${X(85)} ${Y(0)}" class="c1"/>`+gd(64,64,"","A")+`<circle cx="${X(35)}" cy="${Y(35)}" r="3.5" class="dt"/><text x="${X(35)+6}" y="${Y(35)}">inefficient</text><text x="${X(64)+5}" y="${Y(64)}">efficient</text>`,"PPC: points on the curve use resources fully; inside means waste; slope shows opportunity cost.","Good B","Good A"],
+ext:[ln(10,90,90,10,"c1","D = MSB")+ln(10,5,90,75,"c2","MPC")+ln(10,25,90,95,"c1b","MSC")+gd(55.3,44.7,"","Q mkt")+gd(45.3,54.7,"","Q opt"),"Negative externality: MSC is above MPC, so the market overproduces (Q mkt > Q opt).","Cost/benefit","Quantity"],
+adas:[ln(10,90,90,10,"c1","AD")+ln(5,5,95,86,"c2","SRAS")+ln(50,0,50,100,"c1b","LRAS")+gd(50,50,"PL","Y*"),"AD and SRAS set short-run equilibrium. LRAS marks full-employment output.","Price level","Real GDP"],
+lorenz:[ln(0,0,100,100,"dsh","Equality")+`<path d="M${X(0)} ${Y(0)} Q${X(75)} ${Y(10)} ${X(100)} ${Y(100)}" class="c2"/><text x="${X(55)}" y="${Y(20)}">Lorenz curve</text>`,"The bigger the area between the two lines, the higher the Gini coefficient.","Cum. % of income","Cum. % of population"],
+tariff:[ln(10,90,90,10,"c1","D")+ln(10,10,90,90,"c2","S")+ln(0,30,100,30,"dsh","Pw")+ln(0,42,100,42,"c1b","Pw + tariff"),"A tariff raises the domestic price, reducing imports and protecting local producers.","Price","Quantity"],
+fx:[ln(10,85,90,15,"c1","D for €")+ln(10,15,90,85,"c2","S of €")+gd(50,50,"rate","Q"),"The equilibrium exchange rate is set by demand for and supply of the currency.","Exchange rate","Quantity of currency"],
+dem:[ln(10,85,90,15,"c1","D")+gd(30,67.5,"P1","Q1")+gd(70,32.5,"P2","Q2"),"A price change moves us along the curve (quantity demanded changes). The curve itself stays put.","Price","Quantity"],
+sup:[ln(10,15,90,85,"c2","S")+ln(25,15,105,85,"c2","S1"),"More supply (S to S1) shifts the curve right: more is offered at every price.","Price","Quantity"],
+surp:[`<polygon points="${X(0)},${Y(93.75)} ${X(50)},${Y(50)} ${X(0)},${Y(50)}" fill="var(--c1)" opacity=".3"/><polygon points="${X(0)},${Y(6.25)} ${X(50)},${Y(50)} ${X(0)},${Y(50)}" fill="var(--c2)" opacity=".3"/>`+B+gd(50,50,"P*","Q*")+`<text x="36" y="${Y(68)}">CS</text><text x="36" y="${Y(30)}">PS</text>`,"Consumer surplus (CS) is under D above price; producer surplus (PS) is above S below price.","Price","Quantity"],
+short:[B+ln(0,30,100,30,"dsh","")+`<text x="${X(33)}" y="${Y(24)}">shortage</text>`+gd(50,50,"P*","Q*"),"Below P*, quantity demanded exceeds quantity supplied: a shortage.","Price","Quantity"],
+excess:[B+ln(0,70,100,70,"dsh","")+`<text x="${X(33)}" y="${Y(76)}">surplus</text>`+gd(50,50,"P*","Q*"),"Above P*, quantity supplied exceeds quantity demanded: a surplus.","Price","Quantity"],
+ceil:[B+ln(0,35,100,35,"c1b","Ceiling")+gd(50,50,"P*","Q*"),"A ceiling below P* cuts supply and raises demand, creating a shortage.","Price","Quantity"],
+floor:[B+ln(0,65,100,65,"c1b","Floor")+gd(50,50,"P*","Q*"),"A floor above P* cuts demand and raises supply, creating a surplus.","Price","Quantity"],
+tax:[B+ln(10,30,90,100,"c1b","S + tax")+gd(50,50,"P*","Q*")+gd(41.4,57.5,"Pc","Q1"),"The tax shifts S up by the tax amount: price rises (to Pc) and quantity falls (to Q1).","Price","Quantity"],
+sub:[B+ln(10,0,90,70,"c1b","S + subsidy")+gd(50,50,"P*","Q*")+gd(58.6,42.5,"Ps","Q1"),"The subsidy shifts S down: price falls (to Ps) and quantity rises (to Q1).","Price","Quantity"],
+adshift:[ln(10,90,90,10,"c1","AD")+ln(25,90,105,10,"c1b","AD1")+ln(5,5,95,86,"c2","SRAS")+gd(50,50,"PL","Y")+gd(57.9,57.1,"PL1","Y1"),"A rise in AD (AD to AD1) raises both real GDP and the price level.","Price level","Real GDP"],
+lras:[ln(50,0,50,100,"c1","LRAS")+ln(65,0,65,100,"c1b","LRAS1")+ln(10,90,90,10,"c2","AD"),"Higher productive capacity shifts LRAS right: long-run economic growth.","Price level","Real GDP"],
+gap:[ln(10,90,90,10,"c1","AD")+ln(5,5,95,86,"c2","SRAS")+ln(65,0,65,100,"c1b","LRAS")+gd(50,50,"PL","Y1")+`<text x="${X(65)-6}" y="184">Y*</text>`,"Output Y1 is below full-employment output Y*: a recessionary gap.","Price level","Real GDP"],
+ppcshift:[`<path d="M${X(0)} ${Y(85)} Q${X(85)} ${Y(85)} ${X(85)} ${Y(0)}" class="c1"/><path d="M${X(0)} ${Y(100)} Q${X(100)} ${Y(100)} ${X(100)} ${Y(0)}" class="c2"/><text x="${X(30)}" y="${Y(78)}">PPC</text><text x="${X(30)}" y="${Y(96)}">PPC1</text>`,"An outward shift of the PPC means more capacity: economic growth.","Good B","Good A"],
+fxdep:[ln(10,85,90,15,"c1","D")+ln(10,70,90,0,"c1b","D1")+ln(10,15,90,85,"c2","S")+gd(50,50,"rate","Q")+gd(41.4,42.5,"rate1","Q1"),"Lower demand for the currency (D to D1) lowers its exchange rate: depreciation.","Exchange rate","Quantity of currency"]};
+const gs=k=>{const g=GR[k];if(!g)return"";return`<svg viewBox="0 0 250 195" role="img" aria-label="${g[1]}"><path class="ax" d="M30 5V170H240"/><text x="34" y="14">${g[2]}</text><text x="240" y="190" text-anchor="end">${g[3]}</text>${g[0]}</svg><p class="cap">${g[1]}</p><p class="hw"><b>Explanation:</b> ${GX[k]||""}</p>`};const graph=k=>GR[k]?`<div class="box"><h3>Graph</h3>${gs(k)}</div>`:"";
+Object.assign(GR,{
+sd:[B+ln(25,85,105,15,"c1b","D1")+gd(50,50,"P*","Q*")+gd(57.5,56.5,"P1","Q1"),"Equilibrium is where S meets D. A rise in demand (D to D1) moves it to a higher price and quantity.","Price","Quantity"],
+dem:[ln(10,85,90,15,"c1","D")+ln(25,85,105,15,"c1b","D1")+gd(30,67.5,"P1","Q1")+gd(70,32.5,"P2","Q2"),"A price change moves along D; a non-price change shifts the curve to D1.","Price","Quantity"],
+el:[ln(40,95,60,5,"c1","Inelastic")+ln(5,55,95,45,"c2","Elastic")+ln(0,30,100,30,"dsh","P1")+ln(0,70,100,70,"dsh","P2"),"The same price rise (P1 to P2) barely changes quantity on the steep curve but cuts it a lot on the flat one.","Price","Quantity"],
+fx:[B.replace("D<","D for €<").replace("S<","S of €<")+ln(25,85,105,15,"c1b","D1")+gd(50,50,"rate","Q")+gd(57.5,56.5,"rate1","Q1"),"More demand for the currency (D to D1) raises its exchange rate: appreciation.","Exchange rate","Quantity of currency"],
+adas:[ln(10,90,90,10,"c1","AD")+ln(25,90,105,10,"c1b","AD1")+ln(5,5,95,86,"c2","SRAS")+ln(5,17,85,89,"c1b","SRAS1")+gd(50,50,"PL","Y")+gd(57.9,57.1,"PL1","Y1"),"AD1 (more spending) raises output and prices. SRAS1 (higher costs) raises prices and cuts output.","Price level","Real GDP"],
+keyn:[`<path d="M${X(5)} ${Y(20)}L${X(35)} ${Y(20)}L${X(55)} ${Y(35)}L${X(70)} ${Y(65)}L${X(75)} ${Y(100)}" class="c2"/><text x="${X(77)}" y="${Y(97)}">AS</text>`+ln(0,45,45,0,"c1","AD1")+ln(0,72.5,72.5,0,"c1b","AD2")+ln(55,100,100,55,"c1b","AD3")+gd(25,20,"","Y1")+gd(45,27.5,"","Y2")+gd(72,83,"","Y3"),"Keynesian AS: flat with spare capacity, rising as it fills, vertical at full employment.","Price level","Real GDP"],
+mon:[ln(50,0,50,100,"c1","LRAS")+ln(10,90,90,10,"c2","AD")+ln(25,90,105,10,"c1b","AD1")+gd(50,50,"PL","Y*")+gd(50,65,"PL1",""),"Monetarist/new classical view: AD1 only raises the price level; output stays at Y*.","Price level","Real GDP"],
+quota:[ln(10,90,90,10,"c1","D")+ln(10,10,90,90,"c2","S")+ln(0,30,100,30,"dsh","Pw")+ln(30,30,50,30,"c1b","")+ln(50,30,90,70,"c1b","S + quota")+gd(60,40,"Pq","Q"),"A quota caps imports, so the domestic price rises from Pw to Pq.","Price","Quantity"],
+tsub:[ln(10,90,90,10,"c1","D")+ln(10,10,90,90,"c2","S")+ln(25,10,90,75,"c1b","S + subsidy")+ln(0,30,100,30,"dsh","Pw")+gd(30,30,"","Q1")+gd(45,30,"Pw","Q2"),"The subsidy shifts domestic S right: local output rises from Q1 to Q2 and imports fall.","Price","Quantity"]});
+GR.ppc=[GR.ppc[0]+`<path d="M${X(0)} ${Y(100)} Q${X(100)} ${Y(100)} ${X(100)} ${Y(0)}" class="c1b"/><text x="${X(30)}" y="${Y(96)}">PPC1</text>`,"Points on the curve are efficient, inside is inefficient. Growth shifts the PPC out to PPC1.","Good B","Good A"];
+GR.ext[0]+=ln(80,67,80,87,"dsh","tax");GR.ext[1]="A tax equal to the gap between MSC and MPC moves the market from Q mkt to Q opt.";
+GR.lorenz[0]+=`<path d="M${X(0)} ${Y(0)} Q${X(55)} ${Y(25)} ${X(100)} ${Y(100)}" class="c1b"/><text x="${X(55)}" y="${Y(42)}">after redistribution</text>`;
+const GX={
+sd:"1) Find where S and D cross: that is P* and Q*. 2) If demand rises, D shifts right to D1. 3) At P* there is now a shortage, so price rises along S until a new equilibrium (P1, Q1).",
+shift:"D shifts right when income, tastes, population or the price of substitutes change. The new equilibrium has a higher price and quantity.",
+dem:"Moving from P1 to P2 is a movement along D. Only non-price determinants shift the whole curve (D to D1).",
+sup:"Shifts right to S1 when costs fall, technology improves or subsidies rise. At any price firms now offer more.",
+surp:"CS is the area between D and the price; PS is the area between the price and S. Total surplus is highest at P*.",
+short:"At the low price, buyers want more than producers offer. The gap between Qs and Qd is the shortage and price is pushed up.",
+excess:"At the high price, producers offer more than buyers want. The gap is the surplus and price is pushed down.",
+ceil:"The ceiling is below P*. Quantity supplied falls and quantity demanded rises, so there is a shortage.",
+floor:"The floor is above P*. Quantity demanded falls and quantity supplied rises, so there is a surplus.",
+tax:"1) The tax shifts S up by the tax per unit. 2) The equilibrium price rises to Pc and quantity falls to Q1. 3) The more inelastic side bears more of the burden.",
+sub:"1) The subsidy shifts S down by the subsidy per unit. 2) Price falls to Ps and quantity rises to Q1. 3) Cost to government = subsidy per unit × Q1.",
+el:"Steep = inelastic: quantity changes little when price changes. Flat = elastic. Compare the horizontal distance between the two dashed prices.",
+ext:"Without intervention the market produces where MPC meets D (Q mkt). The social optimum is where MSC meets D (Q opt). The gap between MPC and MSC is the external cost per unit; a tax of this size shifts MPC to MSC.",
+ppc:"Points on the curve use all resources. Inside means unemployment or waste. Outside is unattainable until the PPC shifts out (PPC1) through growth. The slope shows opportunity cost.",
+ppcshift:"More resources, better technology or education shift the PPC out, so more of both goods can be produced.",
+adas:"Equilibrium is where AD meets SRAS. AD1 (more consumption, investment or government spending) gives higher output and prices. SRAS1 (higher costs) gives higher prices and lower output, called stagflation.",
+adshift:"AD rises when C, I, G or X − M rises. Firms produce more and the price level rises along SRAS.",
+lras:"LRAS is at full-employment output. Better technology, education or capital shifts it right to LRAS1, meaning long-run growth.",
+gap:"Y1 is below full employment Y*. The distance between them is the recessionary gap. Policy must shift AD right to close it.",
+keyn:"Keynesian AS has three ranges. In the flat range, AD1 to AD2 raises output without raising prices. In the middle range, both rise. In the vertical range, AD3 only raises prices. Keynesians therefore support active demand management in a recession.",
+mon:"Monetarists and new classical economists see a vertical LRAS. A rise in AD to AD1 only raises the price level (PL to PL1) in the long run, so they favour stable money growth and supply-side policy instead.",
+lorenz:"The 45° line is perfect equality. The bowed curve is the real distribution. After redistribution (progressive tax and benefits) the curve moves closer to the line and the Gini coefficient falls.",
+tariff:"The tariff raises the price from Pw to Pw + tax. Domestic output rises, quantity demanded falls, and imports shrink. The government gains revenue.",
+quota:"The quota limits imports to a fixed amount, so supply for the market becomes S + quota. The price rises to Pq. Unlike a tariff, the government gets no revenue; importers with licences gain.",
+tsub:"A subsidy lowers domestic firms' costs, shifting S right. At the world price they produce more (Q1 to Q2) and imports fall, but taxpayers pay the subsidy.",
+fx:"The exchange rate is where D for the currency meets S of the currency. More demand (D1) makes the currency appreciate.",
+fxdep:"Less demand for the currency (D to D1) lowers its price: depreciation. Exports become cheaper and imports dearer."};
+E.quota=["A limit on the quantity of a good that can be imported. The domestic price rises above the world price, domestic producers supply more, consumers buy less, and the government collects no revenue unless licences are sold. It can cause a welfare loss and retaliation.","quota"];
+E["subsidy to domestic producers"]=["A payment to local firms that lowers their costs so they can compete with imports. Domestic output rises and imports fall, but the subsidy is paid by taxpayers and can provoke trade disputes under WTO rules.","tsub"];
+E.expansionary.push("keyn","mon");E["long-run AS"].push("keyn");
+const app=document.getElementById("app");let hl=false,unit=-1,q="";
+try{hl=localStorage.getItem("hl")==="1"}catch(e){}
+const tag=t=>t.hl==1?'<span class="tag">HL only</span>':t.hl==2?'<span class="tag">+HL</span>':"";
+const vis=t=>(hl||t.hl!=1)&&(unit<0||t.u==unit)&&(!q||(t.id+t.t+t.ex+t.terms.join(" ")).toLowerCase().includes(q));
+function home(){
+app.innerHTML=`<h1>Economics Study Guide</h1><p class="sub">Key terms, examples and graphs for every topic. Search or tap a topic.</p>
+<div class="bar"><input type="search" id="q" placeholder="Search topics, terms or ideas (e.g. elasticity, tariff)" value="${q}" aria-label="Search"><div class="seg"><button data-l="0" class="${hl?"":"on"}">SL</button><button data-l="1" class="${hl?"on":""}">HL</button></div></div>
+<div class="chips"><button class="chip ${unit<0?"on":""}" data-u="-1">All units</button>${U.map((n,i)=>`<button class="chip ${unit==i?"on":""}" data-u="${i}">Unit ${i+1}</button>`).join("")}</div><div id="list"></div>`;
+const qi=document.getElementById("q");qi.oninput=e=>{q=e.target.value.trim().toLowerCase();list()};
+app.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{hl=b.dataset.l=="1";try{localStorage.setItem("hl",hl?1:0)}catch(e){}home()});
+app.querySelectorAll("[data-u]").forEach(b=>b.onclick=()=>{unit=+b.dataset.u;home()});list()}
+function list(){let h="";U.forEach((n,i)=>{const ts=T.filter(t=>t.u==i&&vis(t));if(!ts.length)return;
+h+=`<div class="unit"><h2 style="font-size:1.2rem">Unit ${i+1}: ${n}</h2><small>${ts.length} topics</small></div><div class="grid">${ts.map(t=>`<button class="tb ${t.hl?"h":""}" onclick="location.hash='${t.id}'"><b>${t.id}</b><span>${t.t}${tag(t)}</span></button>`).join("")}</div>`});
+document.getElementById("list").innerHTML=h||'<p class="none">No topics match. Try a shorter word like "tax" or "trade".</p>'}
+function page(t){const vs=T.filter(x=>hl||x.hl!=1),i=vs.indexOf(t)<0?0:vs.indexOf(t),pv=vs[i-1],nx=vs[i+1];
+app.innerHTML=`<div class="page"><button class="back" onclick="location.hash=''">← All topics</button>
+<div class="crumb">Unit ${t.unit}: ${U[t.u]}${tag(t)}</div><h2>${t.id} ${t.t}</h2>
+<div class="box"><h3>Key terms</h3><dl>${t.terms.map(e=>`<dt>${e[0]}</dt><dd>${E[e[0]]?E[e[0]][0]:e[1]}${E[e[0]]?E[e[0]].slice(1).map(gs).join(""):""}</dd>`).join("")}</dl></div>
+<div class="box ex"><h3>Example</h3><p style="margin:0">${t.ex}</p></div>${t.terms.some(e=>E[e[0]]&&E[e[0]][1])?"":graph(t.g)}
+${hl&&H[t.id]?`<div class="box" style="border-left:5px solid var(--hl)"><h3>HL extension</h3><p style="margin:0">${H[t.id]}</p></div>`:""}
+<div class="nav">${pv?`<button onclick="location.hash='${pv.id}'">← ${pv.id} ${pv.t}</button>`:"<span></span>"}${nx?`<button onclick="location.hash='${nx.id}'">${nx.id} ${nx.t} →</button>`:""}</div></div>`;scrollTo(0,0)}
+function route(){const t=T.find(x=>x.id==location.hash.slice(1));t?page(t):home()}
+addEventListener("hashchange",route);route();
+</script></body></html>
