@@ -42,7 +42,7 @@ dl{margin:0}dt{font-weight:600;color:var(--ac);margin-top:8px}dd{margin:0}
 svg{width:100%;max-width:440px;display:block;margin:auto}
 svg .ax{stroke:var(--ink);stroke-width:1.5;fill:none}
 svg .c1,svg .c1b{stroke:var(--c1);stroke-width:2.5;fill:none}
-svg .c1b{stroke-dasharray:6 4}.hw{font-size:.95rem;margin:8px 0 0}svg .c2{stroke:var(--c2);stroke-width:2.5;fill:none}
+svg .c1b{stroke-dasharray:6 4}.scroll{overflow-x:auto}.tbl{border-collapse:collapse;width:100%}.tbl th,.tbl td{border:1px solid var(--bd);padding:7px 10px;text-align:center}.tbl td:first-child,.tbl th:first-child{text-align:left}.tbl th{background:var(--bg)}.bloc h4{margin:10px 0 2px;color:var(--ac);font-size:.95rem}.bloc ul{margin:0;padding-left:20px}.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0 20px}.hw{font-size:.95rem;margin:8px 0 0}svg .c2{stroke:var(--c2);stroke-width:2.5;fill:none}
 svg .dsh{stroke:var(--mut);stroke-dasharray:4 3;stroke-width:1}
 svg .dt{fill:var(--ink)}
 svg text{fill:var(--ink);font:11px "Source Sans 3",sans-serif}
@@ -184,10 +184,31 @@ fxdep:"Less demand for the currency (D to D1) lowers its price: depreciation. Ex
 E.quota=["A limit on the quantity of a good that can be imported. The domestic price rises above the world price, domestic producers supply more, consumers buy less, and the government collects no revenue unless licences are sold. It can cause a welfare loss and retaliation.","quota"];
 E["subsidy to domestic producers"]=["A payment to local firms that lowers their costs so they can compete with imports. Domestic output rises and imports fall, but the subsidy is paid by taxpayers and can provoke trade disputes under WTO rules.","tsub"];
 E.expansionary.push("keyn","mon");E["long-run AS"].push("keyn");
+const t44=T.find(x=>x.id=="4.4");
+t44.terms=[["economic integration","The process by which countries reduce or remove trade barriers and coordinate their economic policies. It ranges from a free trade area to a customs union, common market, monetary union and full economic union. The deeper the integration, the larger the potential gains from trade and specialization, but the greater the loss of national sovereignty over economic policy."],
+["trading bloc","A group of countries that agree to reduce trade barriers among themselves, usually in a geographic region. Blocs differ in how deep the integration goes (see the stages below) and can raise welfare through trade creation or reduce it through trade diversion."],
+["trade creation","Occurs when trade within the bloc replaces higher-cost domestic production with lower-cost imports from a member. Consumers pay lower prices, resources move to where the country has a comparative advantage, and allocative efficiency improves."],
+["trade diversion","Occurs when the bloc's external barriers shift imports from a lower-cost non-member to a higher-cost member. This is a welfare cost because resources are used less efficiently. A bloc is most beneficial when trade creation outweighs trade diversion."],
+["monetary union","A common market with a single currency and common central bank, e.g. the eurozone. It removes exchange-rate risk and transaction costs and makes prices transparent, but members lose independent monetary policy and the exchange rate as a tool to adjust to shocks."],
+["economic union","A monetary union that also harmonises fiscal, tax, welfare and regulatory policy. It is the deepest form of integration short of full political union, and needs strong common institutions."]];
+t44.ex="The EU began as a trade bloc, became a customs union and single market, and the 20 members of the eurozone later added a common currency, showing the stages of integration.";
+t44.kw="trading bloc free trade area FTA customs union common market USMCA EU Mercosur ASEAN";
+const BL=[
+{n:"Free trade area (FTA)",d:"A group of countries that remove tariffs, quotas and other barriers on trade among members, while each member keeps its own trade policy towards non-members.",f:["No tariffs or quotas between members","Each member sets its own external tariffs","Rules of origin are needed to stop goods entering through the member with the lowest tariff (trade deflection)"],p:["Lower prices and wider choice for consumers","Gains from specialization and economies of scale","Members keep policy independence and can sign separate deals"],c:["Rules of origin add paperwork and costs","Industries that cannot compete may shrink, causing structural unemployment","Possible trade diversion"],e:"USMCA (US, Mexico, Canada), ASEAN Free Trade Area, EFTA."},
+{n:"Customs union",d:"A free trade area plus a common external tariff (CET) on imports from non-members, so members trade with the rest of the world as one unit.",f:["No internal tariffs or quotas","Common external tariff, so rules of origin are not needed","Common trade policy; members negotiate trade deals together and share tariff revenue by agreed rules"],p:["Simpler trade with no origin checks","Stronger bargaining power in negotiations","Larger market supports economies of scale and FDI"],c:["Loss of independence over trade policy","A high CET can cause trade diversion and higher prices","Disagreements over sharing customs revenue"],e:"The EU customs union, Mercosur, the Eurasian Economic Union."},
+{n:"Common market",d:"A customs union that also allows free movement of factors of production (labour and capital), usually with common product standards and regulations.",f:["Free movement of goods, services, labour and capital","Common external tariff","Harmonised standards and mutual recognition of qualifications"],p:["Labour and capital move to where they are most productive","Lower unemployment in some regions and more FDI","Greater efficiency, competition and growth"],c:["Brain drain from poorer members; pressure on wages and public services in destination countries","Loss of sovereignty over regulation","High adjustment costs for declining industries"],e:"The EU single market (free movement of goods, services, capital and people)."}];
+const ul=a=>"<ul>"+a.map(x=>"<li>"+x+"</li>").join("")+"</ul>";
+const blocs=()=>`<div class="box"><h3>Trading blocs: the main types</h3><p style="margin-top:0">Each stage includes everything in the one before it and adds deeper integration.</p>
+<div class="scroll"><table class="tbl"><tr><th>Feature</th><th>FTA</th><th>Customs union</th><th>Common market</th></tr>
+<tr><td>No tariffs or quotas between members</td><td>✔</td><td>✔</td><td>✔</td></tr>
+<tr><td>Common external tariff</td><td>✘</td><td>✔</td><td>✔</td></tr>
+<tr><td>Free movement of labour and capital</td><td>✘</td><td>✘</td><td>✔</td></tr>
+<tr><td>Independent trade policy</td><td>✔</td><td>✘</td><td>✘</td></tr></table></div></div>`+
+BL.map(b=>`<div class="box bloc"><h3>${b.n}</h3><p style="margin:0 0 6px">${b.d}</p><h4>Key features</h4>${ul(b.f)}<div class="two"><div><h4>Advantages</h4>${ul(b.p)}</div><div><h4>Disadvantages</h4>${ul(b.c)}</div></div><p style="margin:8px 0 0"><b>Examples:</b> ${b.e}</p></div>`).join("");
 const app=document.getElementById("app");let hl=false,unit=-1,q="";
 try{hl=localStorage.getItem("hl")==="1"}catch(e){}
 const tag=t=>t.hl==1?'<span class="tag">HL only</span>':t.hl==2?'<span class="tag">+HL</span>':"";
-const vis=t=>(hl||t.hl!=1)&&(unit<0||t.u==unit)&&(!q||(t.id+t.t+t.ex+t.terms.join(" ")).toLowerCase().includes(q));
+const vis=t=>(hl||t.hl!=1)&&(unit<0||t.u==unit)&&(!q||(t.id+t.t+t.ex+(t.kw||"")+t.terms.join(" ")).toLowerCase().includes(q));
 function home(){
 app.innerHTML=`<h1>Economics Study Guide</h1><p class="sub">Key terms, examples and graphs for every topic. Search or tap a topic.</p>
 <div class="bar"><input type="search" id="q" placeholder="Search topics, terms or ideas (e.g. elasticity, tariff)" value="${q}" aria-label="Search"><div class="seg"><button data-l="0" class="${hl?"":"on"}">SL</button><button data-l="1" class="${hl?"on":""}">HL</button></div></div>
@@ -201,7 +222,7 @@ document.getElementById("list").innerHTML=h||'<p class="none">No topics match. T
 function page(t){const vs=T.filter(x=>hl||x.hl!=1),i=vs.indexOf(t)<0?0:vs.indexOf(t),pv=vs[i-1],nx=vs[i+1];
 app.innerHTML=`<div class="page"><button class="back" onclick="location.hash=''">← All topics</button>
 <div class="crumb">Unit ${t.unit}: ${U[t.u]}${tag(t)}</div><h2>${t.id} ${t.t}</h2>
-<div class="box"><h3>Key terms</h3><dl>${t.terms.map(e=>`<dt>${e[0]}</dt><dd>${E[e[0]]?E[e[0]][0]:e[1]}${E[e[0]]?E[e[0]].slice(1).map(gs).join(""):""}</dd>`).join("")}</dl></div>
+<div class="box"><h3>Key terms</h3><dl>${t.terms.map(e=>`<dt>${e[0]}</dt><dd>${E[e[0]]?E[e[0]][0]:e[1]}${E[e[0]]?E[e[0]].slice(1).map(gs).join(""):""}</dd>`).join("")}</dl></div>${t.id=="4.4"?blocs():""}
 <div class="box ex"><h3>Example</h3><p style="margin:0">${t.ex}</p></div>${t.terms.some(e=>E[e[0]]&&E[e[0]][1])?"":graph(t.g)}
 ${hl&&H[t.id]?`<div class="box" style="border-left:5px solid var(--hl)"><h3>HL extension</h3><p style="margin:0">${H[t.id]}</p></div>`:""}
 <div class="nav">${pv?`<button onclick="location.hash='${pv.id}'">← ${pv.id} ${pv.t}</button>`:"<span></span>"}${nx?`<button onclick="location.hash='${nx.id}'">${nx.id} ${nx.t} →</button>`:""}</div></div>`;scrollTo(0,0)}
